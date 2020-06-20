@@ -1,3 +1,56 @@
+/*
+	Boolean
+		values are true or false
+		not an alias for other types (int)
+		zero value is false
+
+	Numeric types
+		Integers
+			Signed integers ( -1...1 )
+				int32, int8, int64, int16
+			Unsigned integers ( >-1 )
+				uint8, uint32, uint16
+			Arithmetic operations
+				+, -, *, /, %
+			BitWise operations
+				&, |, ^, &^
+			Default value is 0
+			Cant mix types in same family! ( uint16 + uint32 = error )
+
+		Floating point numbers
+			Follow IEEE-754 standart
+			Default value is 0
+			32 and 64 bit versions
+			Literal styles
+				Decimal (3.14)
+				Exponentioal (13e18 or 2E10)
+				Mixed (13.7e12)
+			Arithmetic operations
+				+, -, *, /
+
+		Complex numbers
+			Default value is (0+0i)
+			64 and 128 bit versions
+			Built-in functions
+				complex - make complex number from two floats
+				real - get the real part as float
+				imag - get imaginary pars as float
+			Arithmetic operations
+				+, -, *, /
+
+		Text types
+			Strings
+				UTF-8
+				Immutable
+				Can be concatenated with + operator
+				Can be converted to []byte
+			Rune
+				UTF-32
+				Alias for int32
+				Special methods normally required to process
+					e.g. strings.Reader#ReadRune
+*/
+
 package main
 
 import "fmt"
@@ -63,7 +116,22 @@ func main() {
 	fmt.Printf("%v, %T\n", string(s[0]), string(s[0])) // i, string
 
 	// adding strings
-	s2 := "Imma string 2"
-	twoStrings := s + s2
-	fmt.Printf("%v, %T", twoStrings, twoStrings)
+	s2 := "Imma string 2"                          // Imma string 2
+	twoStrings := s + s2                           // imma stringImma string 2
+	fmt.Printf("%v, %T\n", twoStrings, twoStrings) // imma stringImma string 2, string
+
+	// converting string go list of bytes uint8
+	c := []byte(s)               // [105 109 109 97 32 115 116 114 105 110 103]
+	fmt.Printf("%v, %T\n", c, c) // [105 109 109 97 32 115 116 114 105 110 103], []uint8
+
+	// creating a char variable
+	// we use ' ' for creating a single char
+	r := 'a' // 97 int32
+	// A rune is a type meant to represent a Unicode code point.
+	var r1 rune = 'a'              // 97 int32
+	fmt.Printf("%v, %T\n", r, r)   // 97, int32
+	fmt.Printf("%v, %T\n", r1, r1) // 97, int32
+	// r1 == r
+	fmt.Printf("%v\n", r == r1) // true
+
 }
